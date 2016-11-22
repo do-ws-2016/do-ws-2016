@@ -1,0 +1,12 @@
+{
+  "host": "localhost",
+  "port": 3030,
+  "mongodb": "mongodb://localhost:27017/blog",
+  "public": "../public/",
+  "auth": {
+    "token": {
+      "secret": "DrF4z4qiMsKhtTfVjCbNcI1qO1kTiC7WU7WgyDetep2ics70lRvhp4uOmIs/Em70UMe4d5U1Or4Jwo+3T4wamQ=="
+    },
+    "local": {}
+  }
+}
