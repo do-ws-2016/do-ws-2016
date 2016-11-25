@@ -9,6 +9,17 @@ enum Category {
   OTHER
 }
 
+enum BBQMethod {
+  DIRECT
+  INDIRECT
+}
+
+enum BBQIntensity{
+  STRONG
+  MEDIUM
+  LOW
+}
+
 type User {
   _id: String! # the ! means that every author object _must_ have an id
   firstName: String
@@ -26,6 +37,23 @@ type Post {
   createdAt: String
   comments(limit: Int) : [Comment]
   author: User
+}
+
+type Recipe {
+  _id: String!
+  title: String!
+  description: String
+  tags: [String]
+  sequence: [Task]
+  createdAt: String
+  author: User
+}
+
+type Task {
+  title: String!
+  duration: Int
+  intensity: BBQIntensity
+  method: BBQMethod
 }
 
 type Comment {
@@ -47,11 +75,26 @@ input postInput {
   category: Category
 }
 
+input recipeInput {
+  title: String!
+  description: String!
+  tags: [String]
+  sequence: [taskInput]
+}
+
+input taskInput {
+  title: String!
+  duration: Int
+  intensity: BBQIntensity
+  method: BBQMethod
+}
+
 # the schema allows the following queries:
 type RootQuery {
   viewer: User
   author(username: String!): User
   authors: [User]
+  recipes: [Recipe]
   posts(category: Category): [Post]
   post(_id: String!) : Post
 }
@@ -73,6 +116,10 @@ type RootMutation {
   createPost (
     post: postInput
   ): Post
+
+  createRecipe (
+    recipe: recipeInput
+  ): Recipe
 
   createComment (
     postId: String!

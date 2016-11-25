@@ -4,6 +4,7 @@ export default function getResolvers() {
   let app = this;
 
   let Posts = app.service('posts');
+  let Recipes = app.service('recipes');
   let Users = app.service('users');
   let Comments = app.service('comments');
   let Viewer = app.service('viewer');
@@ -32,6 +33,11 @@ export default function getResolvers() {
       },
       author(post, args, context) {
         return Users.get(post.authorId);
+      }
+    },
+    Recipe: {
+      author(recipe, args, context) {
+        return Users.get(recipe.authorId);
       }
     },
     Comment: {
@@ -68,6 +74,9 @@ export default function getResolvers() {
         }
         return Posts.find({});
       },
+      recipes(root, args, context) {
+        return Recipes.find({});
+      },
       post(root, { _id }, context) {
         return Posts.get(_id)
       }
@@ -86,6 +95,9 @@ export default function getResolvers() {
       },
       createPost(root, {post}, context) {
         return Posts.create(post, context);
+      },
+      createRecipe(root, {recipe}, context) {
+        return Recipes.create(recipe, context);
       },
       createComment(root, args, context) {
         return Comments.create(args, context);
