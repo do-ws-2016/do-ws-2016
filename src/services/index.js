@@ -1,3 +1,4 @@
+import cookbook from './cookbook';
 import recipe from './recipe';
 import viewer from './viewer';
 import comment from './comment';
@@ -19,5 +20,6 @@ module.exports = function() {
   app.configure(comment);
   app.configure(viewer);
   app.configure(recipe);
+  app.configure(cookbook);
   app.configure(graphql);
 };

@@ -57,6 +57,15 @@ type Task {
   method: BBQMethod
 }
 
+type Cookbook {
+  title: String!
+  description: String
+  tags: [String]
+  recipes: [Recipe]
+  createdAt: String
+  author: User
+}
+
 type Comment {
   _id: String!
   content: String!
@@ -96,6 +105,7 @@ type RootQuery {
   author(username: String!): User
   authors: [User]
   recipes: [Recipe]
+  cookbook: [Cookbook]
   posts(category: Category): [Post]
   post(_id: String!) : Post
 }

@@ -5,6 +5,7 @@ export default function getResolvers() {
 
   let Posts = app.service('posts');
   let Recipes = app.service('recipes');
+  let Cookbook = app.service('cookbooks');
   let Users = app.service('users');
   let Comments = app.service('comments');
   let Viewer = app.service('viewer');
@@ -47,6 +48,18 @@ export default function getResolvers() {
         return Users.get(recipe.authorId);
       }
     },
+    Cookbook: {
+      author(cookbook, args, context) {
+        return Users.get(cookbook.authorId);
+      },
+      recipes(cookbook, args, context) {
+        return Recipes.find({
+          query: {
+            _id: cookbook.recipes
+          }
+        });
+      },
+    },
     Comment: {
       author(comment, args, context) {
         return Users.get(comment.authorId);
@@ -83,6 +96,9 @@ export default function getResolvers() {
       },
       recipes(root, args, context) {
         return Recipes.find({});
+      },
+      cookbook(root, args, context) {
+        return Cookbook.find({});
       },
       post(root, { _id }, context) {
         return Posts.get(_id)
