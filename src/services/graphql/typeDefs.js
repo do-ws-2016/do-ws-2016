@@ -26,6 +26,7 @@ type User {
   lastName: String
   username: String!
   posts: [Post] # the list of Posts by this author
+  recipes: [Recipe]
 }
 
 type Post {
