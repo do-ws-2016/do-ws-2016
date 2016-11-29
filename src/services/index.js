@@ -1,8 +1,6 @@
 import cookbook from './cookbook';
 import recipe from './recipe';
 import viewer from './viewer';
-import comment from './comment';
-import post from './post';
 import graphql from './graphql';
 import authentication from './authentication';
 import user from './user';
@@ -16,8 +14,6 @@ module.exports = function() {
 
   app.configure(authentication);
   app.configure(user);
-  app.configure(post);
-  app.configure(comment);
   app.configure(viewer);
   app.configure(recipe);
   app.configure(cookbook);
