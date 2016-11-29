@@ -33,3 +33,10 @@ data/
 
 .vcs/
 database/
+
+
+# Backend Angular modules
+/backend/bower_components
+/backend/node_modules
+/backend/.vcs/
+/backend/dist/
