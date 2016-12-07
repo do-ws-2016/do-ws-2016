@@ -1,7 +1,7 @@
 {
-  "host": "blog.feathersjs.com",
+  "host": "localhost",
   "port": 80,
-  "mongodb": "DATABASE_URL",
+  "mongodb": "MONGO_URL",
   "public": "../public/",
   "auth": {
     "token": {
