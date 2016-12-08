@@ -3,6 +3,7 @@
   "port": "PORT",
   "mongodb": "MONGO_URL",
   "public": "../public/",
+  "logLevel": "LOG_LEVEL",
   "auth": {
     "token": {
       "secret": "FEATHERS_AUTH_SECRET"

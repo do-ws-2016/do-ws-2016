@@ -28,6 +28,7 @@
     "test": "jest",
     "jshint": "jshint src/. test/. --config",
     "start": "babel-node src/",
+    "debug": "babel-node --inspect src/",
     "dev": "nodemon src/ --exec babel-node --presets es2015-node5",
     "mocha": "mocha test/ --compilers js:babel-core/register --recursive"
   },
