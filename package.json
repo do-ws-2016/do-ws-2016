@@ -21,7 +21,7 @@
     ]
   },
   "scripts": {
-    "test": "npm run jshint && npm run mocha",
+    "test": "npm run mocha",
     "jshint": "jshint src/. test/. --config",
     "start": "babel-node src/",
     "dev": "nodemon src/ --exec babel-node --presets es2015-node5",
