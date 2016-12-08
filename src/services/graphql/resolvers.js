@@ -16,6 +16,13 @@ export default function getResolvers() {
             authorId: user._id
           }
         });
+      },
+      cookbooks(user, args, context) {
+        return Cookbook.find({
+          query: {
+            authorId: user._id
+          }
+        });
       }
     },
     Recipe: {

@@ -18,6 +18,7 @@ type User {
   lastName: String
   username: String!
   recipes: [Recipe]
+  cookbooks: [Cookbook]
 }
 
 type Recipe {
