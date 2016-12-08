@@ -1,10 +1,7 @@
-'use strict';
+import app from '../../../src/app';
 
-const assert = require('assert');
-const app = require('../../../src/app');
-
-describe('user service', function() {
+describe('user service', () => {
   it('registered the users service', () => {
-    assert.ok(app.service('users'));
+    expect(app.service('users')).toBeDefined();
   });
 });

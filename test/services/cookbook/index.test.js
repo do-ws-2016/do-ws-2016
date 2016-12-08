@@ -1,10 +1,7 @@
-'use strict';
+import app from '../../../src/app';
 
-const assert = require('assert');
-const app = require('../../../src/app');
-
-describe('cookbook service', function() {
+describe('cookbook service', () => {
   it('registered the cookbooks service', () => {
-    assert.ok(app.service('cookbooks'));
+    expect(app.service('cookbooks')).toBeDefined();
   });
 });

@@ -1,7 +1,3 @@
-import app from './app';
-const port = app.get('port');
-const server = app.listen(port);
+import server from './server';
 
-server.on('listening', () =>
-  console.log(`Feathers application started on ${app.get('host')}:${port}`)
-);
+server();

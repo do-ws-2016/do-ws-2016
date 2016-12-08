@@ -1,16 +1,12 @@
-import request from 'request-promise';
+import localLogin from '../authentication/localLogin';
 
 export default function getResolvers() {
-  let app = this;
-
-  let Recipes = app.service('recipes');
-  let Cookbook = app.service('cookbooks');
-  let Users = app.service('users');
-  let Viewer = app.service('viewer');
-  const localRequest = request.defaults({
-    baseUrl: `http://${app.get('host')}:${app.get('port')}`,
-    json: true
-  });
+  const app = this;
+  const Recipes = app.service('recipes');
+  const Cookbook = app.service('cookbooks');
+  const Users = app.service('users');
+  const Viewer = app.service('viewer');
+  const login = localLogin.bind(app);
 
   return {
     User: {
@@ -71,11 +67,7 @@ export default function getResolvers() {
         return Users.create(args)
       },
       logIn(root, {username, password}, context) {
-        return localRequest({
-          uri: '/auth/local',
-          method: 'POST',
-          body: { username, password }
-        });
+        return login(username, password);
       },
       createRecipe(root, {recipe}, context) {
         return Recipes.create(recipe, context);

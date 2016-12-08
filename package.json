@@ -20,14 +20,21 @@
       "es2015-node5"
     ]
   },
+  "jest": {
+    "testEnvironment": "node",
+    "automock": false
+  },
   "scripts": {
-    "test": "npm run mocha",
+    "test": "jest",
     "jshint": "jshint src/. test/. --config",
     "start": "babel-node src/",
     "dev": "nodemon src/ --exec babel-node --presets es2015-node5",
     "mocha": "mocha test/ --compilers js:babel-core/register --recursive"
   },
   "dependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-preset-es2015-node5": "^1.2.0",
+    "babel-register": "^6.18.0",
     "body-parser": "^1.15.2",
     "compression": "^1.6.2",
     "cors": "^2.8.1",
@@ -43,17 +50,16 @@
     "graphql-server-express": "^0.4.3",
     "graphql-tools": "^0.8.1",
     "mongoose": "^4.6.8",
+    "node-fetch": "^1.6.3",
     "passport": "^0.3.2",
-    "request-promise": "^4.1.1",
-    "request": "^2.79.0",
     "serve-favicon": "^2.3.2",
-    "winston": "^2.3.0",
-    "babel-cli": "^6.18.0",
-    "babel-preset-es2015-node5": "^1.2.0",
-    "babel-register": "^6.18.0"
+    "winston": "^2.3.0"
   },
   "devDependencies": {
+    "babel-jest": "^17.0.2",
+    "babel-polyfill": "^6.16.0",
     "flow-bin": "^0.35.0",
+    "jest": "^17.0.3",
     "jshint": "^2.9.4",
     "mocha": "^3.1.2",
     "nodemon": "^1.11.0"

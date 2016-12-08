@@ -1,38 +1,33 @@
-const assert = require('assert');
-const request = require('request');
-const app = require('../../../src/app');
+import fetch from 'node-fetch';
+import server from '../../../src/server';
 
-describe('graphql service', function() {
-  before(function(done) {
-    this.server = app.listen(3030);
-    this.server.once('listening', () => done());
+describe('graphql service', () => {
+  let connection;
+  beforeAll(() => {
+    connection = server(3030);
+  });
+  afterAll(() => {
+    connection.close();
+  });
+  it('shows a 405 Method not allowed error', () => {
+    return fetch('http://localhost:3030/graphql')
+      .then((res) => {
+        expect(res.status).toEqual(405)
+        return res.text();
+      })
+      .then((body) => {
+        expect(body).toMatchSnapshot();
+      })
   });
 
-  after(function(done) {
-    this.server.close(done);
-  });
-
-  it('shows a 405 Method not allowed error', function(done) {
-    request({
-      url: 'http://localhost:3030/graphql',
-      json: true,
-    }, function(err, res, body) {
-      assert.equal(res.statusCode, 405);
-      done(err);
-    });
-  });
-  describe('graphiql Editor', function() {
-    it('shows a HTML page', function(done) {
-      request({
-        url: 'http://localhost:3030/graphiql',
-        headers: {
-          'Accept': 'text/html'
-        }
-      }, function(err, res, body) {
-        assert.equal(res.statusCode, 200);
-        assert.notEqual(body.indexOf('<title>GraphiQL</title>'), -1);
-        done(err);
-      });
-    });
+  it('shows the graphiql Editor', () => {
+    return fetch('http://localhost:3030/graphiql')
+      .then((res) => {
+        expect(res.status).toEqual(200)
+        return res.text();
+      })
+      .then((body) => {
+        expect(body).toMatchSnapshot();
+      })
   });
 });

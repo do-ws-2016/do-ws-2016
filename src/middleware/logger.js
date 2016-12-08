@@ -4,6 +4,10 @@ module.exports = function(app) {
   // Add a logger to our app object for convenience
   app.logger = winston;
 
+  if (process.env.NODE_ENV === 'test') {
+    winston.remove(winston.transports.Console);
+  }
+
   return function(error, req, res, next) {
     if (error) {
       const message = `${error.code ? `(${error.code}) ` : '' }Route: ${req.url} - ${error.message}`;
@@ -13,7 +17,7 @@ module.exports = function(app) {
       }
       else {
         winston.error(message);
-        winston.info(error.stack);
+        // winston.info(error.stack);
       }
     }
 

@@ -1,10 +1,7 @@
-'use strict';
+import app from '../../../src/app';
 
-const assert = require('assert');
-const app = require('../../../src/app');
-
-describe('viewer service', function() {
+describe('viewer service', () => {
   it('registered the viewer service', () => {
-    assert.ok(app.service('viewer'));
+    expect(app.service('viewer')).toBeDefined();
   });
 });
