@@ -17,13 +17,18 @@ module.exports = function(){
           provider
         },
         formatError: error => {
-          app.logger.clog("warn", `GRAPQL-${error.originalError.name}-${error.originalError.code}`, error.message, { path: error.path, locations: error.locations });
+          const path = error.path.join(' ▸ ')
+          app.logger.clog("warn",
+            `GRAPQL-${error.originalError.name}-${error.originalError.code}`,
+            error.message,
+            "\n ↪ Path: " + path
+          );
           return {
             name: error.originalError.name,
             code: error.originalError.code,
             message: error.message,
             locations: error.locations,
-            path: error.path
+            path: path
           };
         }
       }
