@@ -18,12 +18,11 @@ export default function getResolvers() {
         });
       },
       cookbooks(user, args, context) {
-        // return Cookbook.find({
-        //   query: {
-        //     authorId: user._id
-        //   }
-        // });
-        return Promise.reject("TEST");
+        return Cookbook.find({
+          query: {
+            authorId: user._id
+          }
+        });
       }
     },
     Recipe: {
