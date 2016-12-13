@@ -32,8 +32,8 @@ export default function getResolvers() {
       author(recipe, args, context) {
         return Users.get(recipe.authorId);
       },
-      thumbnail(recipe, args, context) {
-        return buffer2Img(recipe.image);
+      thumbnail(recipe, {width, height, greyscale}, context) {
+        return buffer2Img(recipe.image, {width, height, greyscale});
       }
     },
     Cookbook: {
@@ -86,9 +86,9 @@ export default function getResolvers() {
         if (!imageUrl) {
           return Recipes.create(recipe, context);
         }
-        return img2Buffer(imageUrl).then((imgBuffer) => {
+        return img2Buffer(imageUrl).then((image) => {
           const data = recipe;
-          data.image = imgBuffer;
+          data.image = image;
           return Recipes.create(data, context);
         })
       },

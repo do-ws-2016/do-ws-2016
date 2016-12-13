@@ -1,49 +1,37 @@
-import Jimp from 'jimp';
+import sharp from 'sharp';
+import request from 'request';
+import B64 from 'b64';
+import getStream from 'get-stream';
 
 const img2Buffer = (url) => {
-  return Jimp.read(url)
-  .then((image) => {
-    //resize
-    const size = 1242;
-    return image.cover(size, size);
-  })
-  .then((image) => {
-    //change quallity
-    return image.quality(50);
-  })
-  .then((image) => {
-    return new Promise((resolve, reject) => {
-      image.getBuffer( Jimp.MIME_JPEG, (err, data) => {
-        if (err) {
-          reject(err);
-        }else {
-          resolve(data);
-        }
-      });
-    });;
-  })
+
+
+  const transformImg = sharp()
+    .resize(1242, 1242)
+    .jpeg({quality: 80})
+
+  const stream = request
+    .get(url)
+    .pipe(transformImg)
+
+  return getStream.buffer(stream)
+
 }
 
-const buffer2Img = (imgBuffer) => {
-  if (!imgBuffer) {
-    return null;
+const buffer2Img = (buffer) => {
+  if (!buffer) {
+    return null
   }
-  return Jimp.read(imgBuffer)
-  // .then((image) => {
-  //   //greyscale
-  //   return image.greyscale();
-  // })
-  .then((image) => {
-    return new Promise((resolve, reject) => {
-      image.getBase64( Jimp.MIME_JPEG, (err, data) => {
-        if (err) {
-          reject(err);
-        }else {
-          resolve(data);
-        }
-      });
-    });;
-  })
+
+  const encoder = new B64.Encoder();
+
+  const stream = sharp(buffer)
+    .greyscale()
+    .pipe(encoder)
+
+  return getStream(stream)
+    .then(base64Data => `data:image/jpeg;base64,${base64Data}`)
+
 }
 
 export {

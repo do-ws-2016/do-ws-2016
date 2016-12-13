@@ -31,7 +31,7 @@ type Recipe {
   sequence: [Task]
   createdAt: String
   author: User
-  thumbnail: Image
+  thumbnail(width: Int, height: Int, greyscale: Boolean): Image
 }
 
 type Task {

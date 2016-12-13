@@ -1,4 +1,5 @@
 import { img2Buffer, buffer2Img } from '../../src/tools/img';
+import sharp from 'sharp';
 
 describe('img lib', () => {
   pit('logs the url', () => {
@@ -14,5 +15,4 @@ describe('img lib', () => {
       })
     })
   });
-
 });
