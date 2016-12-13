@@ -1,4 +1,6 @@
 import localLogin from '../authentication/localLogin';
+import { ImageType, Image } from './imageType';
+import  { buffer2Img, img2Buffer } from '../../tools/img';
 
 export default function getResolvers() {
   const app = this;
@@ -9,6 +11,7 @@ export default function getResolvers() {
   const login = localLogin.bind(app);
 
   return {
+    Image: ImageType,
     User: {
       recipes(user, args, context) {
         return Recipes.find({
@@ -28,6 +31,9 @@ export default function getResolvers() {
     Recipe: {
       author(recipe, args, context) {
         return Users.get(recipe.authorId);
+      },
+      thumbnail(recipe, {width, height, greyscale}, context) {
+        return buffer2Img(recipe.image, {width, height, greyscale});
       }
     },
     Cookbook: {
@@ -76,8 +82,15 @@ export default function getResolvers() {
       logIn(root, {username, password}, context) {
         return login(username, password);
       },
-      createRecipe(root, {recipe}, context) {
-        return Recipes.create(recipe, context);
+      createRecipe(root, { recipe, imageUrl }, context) {
+        if (!imageUrl) {
+          return Recipes.create(recipe, context);
+        }
+        return img2Buffer(imageUrl).then((image) => {
+          const data = recipe;
+          data.image = image;
+          return Recipes.create(data, context);
+        })
       },
     }
   }

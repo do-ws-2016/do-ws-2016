@@ -1,6 +1,8 @@
 // @flow
 export default `
 
+scalar Image
+
 enum BBQMethod {
   DIRECT
   INDIRECT
@@ -29,6 +31,7 @@ type Recipe {
   sequence: [Task]
   createdAt: String
   author: User
+  thumbnail(width: Int, height: Int, greyscale: Boolean): Image
 }
 
 type Task {
@@ -91,6 +94,7 @@ type RootMutation {
 
   createRecipe (
     recipe: recipeInput
+    imageUrl: String
   ): Recipe
 
 }
