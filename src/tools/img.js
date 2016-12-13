@@ -5,9 +5,9 @@ import getStream from 'get-stream';
 
 const img2Buffer = (url) => {
 
-
+  // resize to ipad size.
   const transformImg = sharp()
-    .resize(1242, 1242)
+    .resize(2048, 2048)
     .jpeg({quality: 80})
 
   const stream = request
