@@ -18,16 +18,22 @@ const img2Buffer = (url) => {
 
 }
 
-const buffer2Img = (buffer) => {
+const buffer2Img = (buffer, {width, height, greyscale}) => {
   if (!buffer) {
-    return null
+    return null;
   }
-
+  const stream = sharp(buffer);
   const encoder = new B64.Encoder();
 
-  const stream = sharp(buffer)
-    .greyscale()
-    .pipe(encoder)
+  if (width) {
+    if(height){
+      stream.resize(x,y)
+    }
+  }
+  if (greyscale) {
+    stream.greyscale()
+  }
+  stream.pipe(encoder)
 
   return getStream(stream)
     .then(base64Data => `data:image/jpeg;base64,${base64Data}`)
