@@ -19,7 +19,8 @@ const Recipe = new Schema({
   sequence: { type: [Task] },
   createdAt: { type: Date, 'default': Date.now },
   updatedAt: { type: Date, 'default': Date.now },
-  authorId: { type: String},
+  authorId: { type: String },
+  image: { type: Buffer },
 });
 
 module.exports = mongoose.model('recipe', Recipe);
