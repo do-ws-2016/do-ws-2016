@@ -34,7 +34,7 @@ export default function getResolvers() {
       },
       thumbnail(recipe, {width, height, greyscale}, context) {
         return buffer2Img(recipe.image, {width, height, greyscale});
-      }
+      },
     },
     Cookbook: {
       author(cookbook, args, context) {
@@ -46,6 +46,9 @@ export default function getResolvers() {
             _id: cookbook.recipes
           }
         });
+      },
+      thumbnail(recipe, {width, height, greyscale}, context) {
+        return buffer2Img(recipe.image, {width, height, greyscale});
       },
     },
     AuthPayload: {

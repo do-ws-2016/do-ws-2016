@@ -13,6 +13,7 @@ const Cookbook = new Schema({
   createdAt: { type: Date, 'default': Date.now },
   updatedAt: { type: Date, 'default': Date.now },
   authorId: { type: String},
+  image: { type: Buffer },
 });
 const cookbookModel = mongoose.model('cookbook', Cookbook);
 

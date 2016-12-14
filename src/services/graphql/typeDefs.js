@@ -60,6 +60,7 @@ type Cookbook {
   recipes: [Recipe]
   createdAt: String
   author: User
+  thumbnail(width: Int, height: Int, greyscale: Boolean): Image
 }
 
 # The payload which is needed to Authenticate
