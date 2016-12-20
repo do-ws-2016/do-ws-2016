@@ -73,7 +73,7 @@ export default function getResolvers() {
       recipes(root, args, context) {
         return Recipes.find({});
       },
-      cookbook(root, args, context) {
+      cookbooks(root, args, context) {
         return Cookbook.find({});
       },
     },

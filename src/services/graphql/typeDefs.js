@@ -93,7 +93,7 @@ type RootQuery {
   author(username: String!): User
   authors: [User]
   recipes: [Recipe]
-  cookbook: [Cookbook]
+  cookbooks: [Cookbook]
 }
 
 # this schema allows the following mutations:
