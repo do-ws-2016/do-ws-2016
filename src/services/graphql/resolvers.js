@@ -73,8 +73,22 @@ export default function getResolvers() {
       recipes(root, args, context) {
         return Recipes.find({});
       },
+      recipe(root, {_id}, context) {
+        return Recipes.find({
+          query: {
+            _id,
+          }
+        });
+      },
       cookbooks(root, args, context) {
         return Cookbook.find({});
+      },
+      cookbook(root, {_id}, context) {
+        return Cookbook.find({
+          query: {
+            _id,
+          }
+        });
       },
     },
 
