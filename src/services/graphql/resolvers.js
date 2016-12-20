@@ -5,7 +5,7 @@ import  { buffer2Img, img2Buffer } from '../../tools/img';
 export default function getResolvers() {
   const app = this;
   const Recipes = app.service('recipes');
-  const Cookbook = app.service('cookbooks');
+  const Cookbooks = app.service('cookbooks');
   const Users = app.service('users');
   const Viewer = app.service('viewer');
   const login = localLogin.bind(app);
@@ -21,7 +21,7 @@ export default function getResolvers() {
         });
       },
       cookbooks(user, args, context) {
-        return Cookbook.find({
+        return Cookbooks.find({
           query: {
             authorId: user._id
           }
@@ -74,21 +74,13 @@ export default function getResolvers() {
         return Recipes.find({});
       },
       recipe(root, {_id}, context) {
-        return Recipes.find({
-          query: {
-            _id,
-          }
-        });
+        return Recipes.get(_id);
       },
       cookbooks(root, args, context) {
-        return Cookbook.find({});
+        return Cookbooks.find({});
       },
       cookbook(root, {_id}, context) {
-        return Cookbook.find({
-          query: {
-            _id,
-          }
-        });
+        return Cookbooks.get(_id);
       },
     },
 
