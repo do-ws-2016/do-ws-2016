@@ -53,6 +53,7 @@ type Task {
 
 # A cookbook that contains a collection of recipes
 type Cookbook {
+  _id: String!
   title: String!
   description: String
   # A collection of tags to filter cookbooks for
