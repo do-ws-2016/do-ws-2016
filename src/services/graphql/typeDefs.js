@@ -6,7 +6,9 @@ scalar Image
 
 # A list of BBQ methods
 enum BBQMethod {
+  # All burners on
   DIRECT
+  # Turn middle burner off
   INDIRECT
 }
 
@@ -46,6 +48,7 @@ type Recipe {
 # The task will be part of a sequence the user has to follow to create a dish
 type Task {
   title: String!
+  # Duration in seconds
   duration: Int
   intensity: BBQIntensity
   method: BBQMethod
