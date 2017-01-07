@@ -82,6 +82,14 @@ input RecipeInput {
   sequence: [TaskInput]
 }
 
+# Input for Cookbook
+input CookbookInput {
+  title: String!
+  description: String
+  tags: [String]
+  recipes: [String]
+}
+
 # Input for Tasks
 input TaskInput {
   title: String!
@@ -120,6 +128,15 @@ type RootMutation {
     imageUrl: String
   ): Recipe
 
+  createCookbook (
+    cookbook: CookbookInput
+    imageUrl: String
+  ): Cookbook
+
+  addRecipeToCookbook (
+    cookbook: String!
+    recipes: [String]!
+  ): Cookbook
 }
 
 # we need to tell the server which types represent the root query

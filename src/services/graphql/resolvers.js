@@ -101,6 +101,19 @@ export default function getResolvers() {
           return Recipes.create(data, context);
         })
       },
+      createCookbook(root, { cookbook, imageUrl }, context) {
+        if (!imageUrl) {
+          return Cookbooks.create(cookbook, context);
+        }
+        return img2Buffer(imageUrl).then((image) => {
+          const data = cookbook;
+          data.image = image;
+          return Cookbooks.create(data, context);
+        })
+      },
+      addRecipeToCookbook(root, { cookbook, recipes }, context) {
+        return Cookbooks.patch(cookbook, { recipes }, context);
+      },
     }
   }
 }
