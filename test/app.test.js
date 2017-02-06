@@ -4,7 +4,7 @@ import server from '../src/server'
 describe('Feathers application tests', () => {
   let connection
   beforeAll(() => {
-    console.log("MAKE SHURE NO SERVER IS RUNNING ON PORT 3030");
+    console.log('MAKE SHURE NO SERVER IS RUNNING ON PORT 3030')
     connection = server(3030)
   })
   afterAll(() => {
