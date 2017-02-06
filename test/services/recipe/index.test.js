@@ -1,7 +1,7 @@
-import app from '../../../src/app';
+import app from '../../../src/app'
 
 describe('recipe service', () => {
   it('registered the recipes service', () => {
-    expect(app.service('recipes')).toBeDefined();
-  });
-});
+    expect(app.service('recipes')).toBeDefined()
+  })
+})

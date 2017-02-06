@@ -1,4 +1,4 @@
-// @flow
+// TODO: Split up schema in different files matching the resolvers.
 export default `
 
 # A base64 encoded \`Image\`
@@ -145,4 +145,4 @@ schema {
   query: RootQuery
   mutation: RootMutation
 }
-`;
+`

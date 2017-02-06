@@ -1,7 +1,4 @@
-// @flow
-import globalHooks, { restrictedAccess } from '../../../hooks';
-import hooks from 'feathers-hooks';
-import { hooks as auth } from 'feathers-authentication';
+import { restrictedAccess } from '../../../hooks'
 
 exports.before = {
   all: [],
@@ -10,8 +7,8 @@ exports.before = {
   create: restrictedAccess,
   update: restrictedAccess,
   patch: restrictedAccess,
-  remove: restrictedAccess,
-};
+  remove: restrictedAccess
+}
 
 exports.after = {
   all: [],
@@ -21,4 +18,4 @@ exports.after = {
   update: [],
   patch: [],
   remove: []
-};
+}

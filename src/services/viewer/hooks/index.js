@@ -1,11 +1,10 @@
-import globalHooks from '../../../hooks';
-import hooks from 'feathers-hooks';
-import { hooks as auth } from 'feathers-authentication';
+import hooks from 'feathers-hooks'
+import { hooks as auth } from 'feathers-authentication'
 
 exports.before = {
   all: [
     auth.verifyToken(),
-    auth.populateUser(),
+    auth.populateUser()
   ],
   find: [],
   get: [],
@@ -13,11 +12,11 @@ exports.before = {
   update: [],
   patch: [],
   remove: []
-};
+}
 
 exports.after = {
   all: [
-    hooks.remove('password'),
+    hooks.remove('password')
   ],
   find: [],
   get: [],
@@ -25,4 +24,4 @@ exports.after = {
   update: [],
   patch: [],
   remove: []
-};
+}

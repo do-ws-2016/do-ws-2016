@@ -1,27 +1,27 @@
-import service from 'feathers-mongoose';
-import recipe from './recipe-model';
-import hooks from './hooks';
+import service from 'feathers-mongoose'
+import recipe from './recipe-model'
+import hooks from './hooks'
 
-module.exports = function() {
-  const app = this;
+module.exports = function () {
+  const app = this
 
   const options = {
-    Model: recipe,
+    Model: recipe
     // paginate: {
     //   default: 5,
     //   max: 25
     // }
-  };
+  }
 
   // Initialize our service with any options it requires
-  app.use('/recipes', service(options));
+  app.use('/recipes', service(options))
 
   // Get our initialize service to that we can bind hooks
-  const recipeService = app.service('/recipes');
+  const recipeService = app.service('/recipes')
 
   // Set up our before hooks
-  recipeService.before(hooks.before);
+  recipeService.before(hooks.before)
 
   // Set up our after hooks
-  recipeService.after(hooks.after);
-};
+  recipeService.after(hooks.after)
+}

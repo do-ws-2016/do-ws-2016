@@ -1,14 +1,12 @@
-// @flow
-import hooks from './hooks';
-import { graphqlExpress, graphiqlExpress } from 'graphql-server-express';
-import getSchema from './schema';
+import { graphqlExpress, graphiqlExpress } from 'graphql-server-express'
+import getSchema from './schema'
 
-module.exports = function(){
-  const app = this;
-  const schema = getSchema(app);
+module.exports = function () {
+  const app = this
+  const schema = getSchema(app)
   app.use('/graphql',
     graphqlExpress((req) => {
-      const {token, provider} = req.feathers;
+      const {token, provider} = req.feathers
       return {
         debug: false,
         schema,
@@ -17,22 +15,32 @@ module.exports = function(){
           provider
         },
         formatError: error => {
-          const path = error.path.join(' ▸ ')
-          app.logger.clog("warn",
-            `GRAPQL-${error.originalError.name}-${error.originalError.code}`,
-            error.message,
-            "\n ↪ Path: " + path
-          );
+          if (error.path) {
+            const path = error.path.join(' ▸ ')
+            app.logger.clog('warn',
+              `GRAPQL-${error.originalError.name}-${error.originalError.code}`,
+              error.message,
+              '\n ↪ Path: ' + path
+            )
+            return {
+              name: error.originalError.name,
+              code: error.originalError.code,
+              message: error.message,
+              locations: error.locations,
+              path: path
+            }
+          }
+          app.logger.clog('warn',
+            `GRAPQL`,
+            error.message
+          )
           return {
-            name: error.originalError.name,
-            code: error.originalError.code,
             message: error.message,
-            locations: error.locations,
-            path: path
-          };
+            locations: error.locations
+          }
         }
       }
     })
   )
-  app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
-};
+  app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }))
+}

@@ -3,17 +3,34 @@
 // See http://mongoosejs.com/docs/models.html
 // for more of what you can do here.
 
-import mongoose, { Schema } from 'mongoose';
+import mongoose, { Schema } from 'mongoose'
 
 const userSchema = new Schema({
-  username: {type: String, required: true, unique: true},
-  firstName: { type: String},
-  lastName: { type: String},
-  password: { type: String, required: true },
-  createdAt: { type: Date, 'default': Date.now },
-  updatedAt: { type: Date, 'default': Date.now }
-});
+  username: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  firstName: {
+    type: String
+  },
+  lastName: {
+    type: String
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  createdAt: {
+    type: Date,
+    'default': Date.now
+  },
+  updatedAt: {
+    type: Date,
+    'default': Date.now
+  }
+})
 
-const userModel = mongoose.model('user', userSchema);
+const userModel = mongoose.model('user', userSchema)
 
-module.exports = userModel;
+module.exports = userModel

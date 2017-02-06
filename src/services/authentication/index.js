@@ -1,7 +1,7 @@
-import authentication from 'feathers-authentication';
+import authentication from 'feathers-authentication'
 
-module.exports = function() {
-  const app = this;
+module.exports = function () {
+  const app = this
 
   let config = Object.assign(
     {},
@@ -9,6 +9,6 @@ module.exports = function() {
     { local:
       {usernameField: 'username'}
     },
-  );
-  app.configure(authentication(config));
-};
+  )
+  app.configure(authentication(config))
+}

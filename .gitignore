@@ -25,6 +25,8 @@ build/Release
 
 node_modules
 
+#OS
+.DS_Store
 # Users Environment Variables
 .lock-wscript
 

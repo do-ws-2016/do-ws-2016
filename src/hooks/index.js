@@ -3,19 +3,18 @@
 // Below is an example of how a hook is written and exported. Please
 // see http://docs.feathersjs.com/hooks/readme.html for more details
 // on hooks.
-import hooks from 'feathers-hooks';
-import { hooks as auth } from 'feathers-authentication';
+import { hooks as auth } from 'feathers-authentication'
 
 const restrictedAccess = [
   auth.verifyToken(),
   auth.populateUser(),
   auth.restrictToAuthenticated(),
-  auth.associateCurrentUser({as: 'authorId'}),
-];
+  auth.associateCurrentUser({as: 'authorId'})
+]
 
-exports.logResult = function(options) {
-  return function(hook) {
-    console.log({options, result: hook.result});
-  };
-};
-exports.restrictedAccess = restrictedAccess;
+exports.logResult = function (options) {
+  return function (hook) {
+    console.log({options, result: hook.result})
+  }
+}
+exports.restrictedAccess = restrictedAccess

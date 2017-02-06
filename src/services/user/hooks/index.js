@@ -1,6 +1,5 @@
-import globalHooks from '../../../hooks';
-import hooks from 'feathers-hooks';
-import { hooks as auth } from 'feathers-authentication';
+import hooks from 'feathers-hooks'
+import { hooks as auth } from 'feathers-authentication'
 
 exports.before = {
   all: [],
@@ -36,7 +35,7 @@ exports.before = {
     auth.restrictToAuthenticated(),
     auth.restrictToOwner({ ownerField: '_id' })
   ]
-};
+}
 
 exports.after = {
   all: [hooks.remove('password')],
@@ -46,4 +45,4 @@ exports.after = {
   update: [],
   patch: [],
   remove: []
-};
+}

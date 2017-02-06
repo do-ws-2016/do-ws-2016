@@ -1,10 +1,9 @@
-import sharp from 'sharp';
-import request from 'request';
-import B64 from 'b64';
-import getStream from 'get-stream';
+import sharp from 'sharp'
+import request from 'request'
+import B64 from 'b64'
+import getStream from 'get-stream'
 
 const img2Buffer = (url) => {
-
   // resize to ipad size.
   const transformImg = sharp()
     .resize(2048, 2048)
@@ -15,20 +14,17 @@ const img2Buffer = (url) => {
     .pipe(transformImg)
 
   return getStream.buffer(stream)
-
 }
 
 const buffer2Img = (buffer, {width, height, greyscale}) => {
   if (!buffer) {
-    return null;
+    return null
   }
-  let stream = sharp(buffer);
-  const encoder = new B64.Encoder();
+  let stream = sharp(buffer)
+  const encoder = new B64.Encoder()
 
-  if (width) {
-    if(height){
-      stream = stream.resize(width,height)
-    }
+  if (width && height) {
+    stream = stream.resize(width, height)
   }
   if (greyscale) {
     stream = stream.greyscale()
@@ -37,10 +33,9 @@ const buffer2Img = (buffer, {width, height, greyscale}) => {
 
   return getStream(stream)
     .then(base64Data => `data:image/jpeg;base64,${base64Data}`)
-
 }
 
 export {
   img2Buffer,
-  buffer2Img,
-};
+  buffer2Img
+}
